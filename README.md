@@ -110,6 +110,7 @@ pdm add langchain openai playwright langgraph
 pdm add --dev pytest ruff
 pdm add --dev black mypy
 pdm add typer rich
+pdm add --dev pytest-playwright
 ```
 
 ## 4. Verify dependencies
