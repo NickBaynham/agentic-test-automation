@@ -5,7 +5,7 @@ description = "Using AI agents that reason, plan, and generate tests from user w
 authors = [
     {name = "Nick Baynham", email = "nickbaynham@gmail.com"},
 ]
-dependencies = []
+dependencies = ["langchain>=0.3.25", "openai>=1.78.0", "playwright>=1.52.0", "langgraph>=0.4.3", "typer>=0.15.3", "rich>=14.0.0"]
 requires-python = ">=3.13"
 readme = "README.md"
 license = {text = "MIT"}
@@ -17,3 +17,11 @@ build-backend = "pdm.backend"
 
 [tool.pdm]
 distribution = true
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+    "ruff>=0.11.8",
+    "black>=25.1.0",
+    "mypy>=1.15.0",
+]

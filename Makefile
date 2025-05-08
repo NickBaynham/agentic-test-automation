@@ -20,6 +20,7 @@ ensure_tools:
 # Step 1: Install dependencies
 init:
 	pdm install
+	pdm list
 
 # Step 2: Install Playwright browsers
 install_browsers:
