@@ -1,19 +1,17 @@
 from scenario_loader import load_scenarios
+from agents.test_planner_agent import plan_test
 
 
-# === Placeholder agent function ===
 def run_agentic_test(scenario):
     print(f"\n🚀 Running Scenario: {scenario.get('scenario')}")
-    print(f"📝 Description: {scenario.get('description')}")
-    print("➡️ Steps:")
-    for i, step in enumerate(scenario.get("steps", []), start=1):
-        print(f"  {i}. {step}")
-    print("✅ Assertions:")
-    for assertion in scenario.get("assertions", []):
-        print(f"  - {assertion}")
+    structured_steps = plan_test(scenario)
 
-    # TODO: Replace with calls to actual Planner → Generator → Executor agents
-    print("🤖 Agent simulation complete (replace with real agent calls)\n")
+    print("🧱 Structured Steps:")
+    for step in structured_steps:
+        print(f" - {step['raw']} → action: {step['action']} | target: {step['target']}")
+
+    # TODO: pass to GeneratorAgent next
+    print("🤖 Planner complete.\n")
 
 
 def main():
