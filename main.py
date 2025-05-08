@@ -1,17 +1,24 @@
 from scenario_loader import load_scenarios
 from agents.test_planner_agent import plan_test
+from agents.test_generator_agent import generate_test_code, save_test_file
+from agents.test_executor_agent import run_playwright_tests
 
 
 def run_agentic_test(scenario):
-    print(f"\n🚀 Running Scenario: {scenario.get('scenario')}")
+    scenario_name = scenario.get('scenario', 'UnnamedScenario')
+    print(f"\n🚀 Running Scenario: {scenario_name}")
+
+    # Step 1: Planner Agent → Structure raw steps
     structured_steps = plan_test(scenario)
+    print(structured_steps)
 
-    print("🧱 Structured Steps:")
-    for step in structured_steps:
-        print(f" - {step['raw']} → action: {step['action']} | target: {step['target']}")
+    # Step 2: Generator Agent → Convert structured steps to Playwright code
+    # code = generate_test_code(scenario_name, structured_steps)
+    # print(code)
 
-    # TODO: pass to GeneratorAgent next
-    print("🤖 Planner complete.\n")
+    # Step 3: Save to file
+    # filename = f"test_{scenario_name.replace(' ', '_').lower()}.py"
+    # save_test_file(filename, code)
 
 
 def main():
@@ -21,9 +28,14 @@ def main():
     if not scenarios:
         print("❌ No scenarios found in /scenarios/")
         return
+    else:
+        print(len(scenarios), "scenarios found and added.")
 
     for scenario_file in scenarios:
         run_agentic_test(scenario_file["data"])
+
+    print("\n✅ All scenarios processed. Playwright tests generated in /playwright_tests/\n")
+    # run_playwright_tests()
 
 
 if __name__ == "__main__":
