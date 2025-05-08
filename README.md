@@ -8,23 +8,17 @@ This template integrates:
 - **OpenAI GPT-4**: As the language model for generating test scripts.  
 - **LangGraph**: For orchestrating agent workflows.
 
+Important: This project is set up for development with MacOS. You will need pip 25.0+ installed locally!
 
-## Package Management
-This application uses pdm to manage resources. Verify you have pdm installed:
+## Clone the Repository
+Get started on your local machine by cloning the repository:
 ```shell
-pdm --version
+git clone https://github.com/nickbaynham/agentic-test-automation.git
+cd agentic-test-automation.git
 ```
 
-If not, you can install it with brew on mac:
-### Install PDM
+## Running the Application
+This workflow will install any tools and dependencies needed. You will at least need to have Python 3.10+ and the pip package manager installed.
 ```shell
-brew install pdm
-pdm --version
+make
 ```
-
-# Steps for New Project
-When you create new Python code repositories you can follow these steps:
-```shell
-pdm init
-```
-

@@ -1,0 +1,19 @@
+[project]
+name = "agentic-test-automation"
+version = "0.1.0"
+description = "Using AI agents that reason, plan, and generate tests from user workflows"
+authors = [
+    {name = "Nick Baynham", email = "nickbaynham@gmail.com"},
+]
+dependencies = []
+requires-python = ">=3.13"
+readme = "README.md"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+
+[tool.pdm]
+distribution = true
