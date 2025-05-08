@@ -1,0 +1,19 @@
+scenario: Search and Delete Google Docs Document
+description: Search for a document named "Hello World Document" and delete it if it exists.
+
+preconditions:
+  - User must be logged into Google account
+  - Browser must be on https://docs.google.com
+
+steps:
+  - Navigate to https://docs.google.com
+  - In the search bar, enter "Hello World Document" and press Enter
+  - Wait for the search results to load
+  - If a document titled "Hello World Document" is found:
+      - Click the options menu (⋮) or right-click the document
+      - Click "Remove" or "Move to Trash"
+  - If the document is not found:
+      - Log "Document not found – skipping deletion"
+
+assertions:
+  - The document no longer appears in search results

@@ -1,0 +1,20 @@
+scenario: Create and Edit Google Docs Document
+description: Create a new document in Google Docs, rename it, and add a line of text.
+
+preconditions:
+  - User must be logged into Google account
+  - Browser must be on https://docs.google.com
+
+steps:
+  - Navigate to https://docs.google.com
+  - Click on the "Blank" template to create a new document
+  - Wait for the new document editor to load
+  - Click on the document title (top-left)
+  - Clear the current title and type: "Hello World Document"
+  - Click into the body of the document
+  - Type the following text: "Hello, World!"
+  - Wait 2 seconds to ensure autosave
+
+assertions:
+  - Document title should be "Hello World Document"
+  - Document body should contain the text "Hello, World!"

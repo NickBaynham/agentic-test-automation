@@ -117,5 +117,20 @@ pdm add typer rich
 ```shell
 pdm list
 ```
+
+## 5. Configure PyCharm
+### Find the Python Interpreter Path
+```shell
+pdm info | grep venv
+```
+Open PyCharm
+- Go to Preferences (⌘+, on Mac) → Project: YourProject → Python Interpreter
+- Click the ⚙️ (gear icon) → Add Interpreter
+- Choose "Add Local Interpreter" → "Existing Environment"
+- Paste the path you got from pdm info --env
+- Click OK / Apply
+
+Now your PyCharm is using the exact Python environment managed by PDM.
+
 # 📄 License
 MIT © NickBaynham
