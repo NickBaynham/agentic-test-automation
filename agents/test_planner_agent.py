@@ -14,6 +14,7 @@ def parse_step_simple(step_text):
                 "target": "unknown",
                 "data": None
             }
+
         if "navigate to" in text:
             action = "navigate"
             target = text.split("navigate to")[-1].strip()
@@ -32,6 +33,10 @@ def parse_step_simple(step_text):
             match = re.search(r'["“](.*?)["”]', step_text)
             data = match.group(1) if match else "example text"
 
+        elif "verify" in text:
+            action = "assert_title_contains"
+            target = text.split("verify the title contains")[-1].strip()
+            data = None
         else:
             action = "unknown"
             target = "unknown"
@@ -69,7 +74,7 @@ def plan_test(scenario):
     print(f"\n🧠 [PlannerAgent] Planning test for: {scenario.get('scenario')}")
 
     steps = scenario.get("steps", [])
-    print(len(steps), " steps")
+    print("The scenario contains", len(steps), "steps")
     structured_steps = [parse_step_simple(step) for step in steps]
 
     print(f"📋 Planned {len(structured_steps)} structured steps.")

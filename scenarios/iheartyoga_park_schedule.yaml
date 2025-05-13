@@ -1,0 +1,13 @@
+scenario: Check the I Heart Yoga schedule for Yoga in the Park activity
+description: Navigate to the website and go to the park schedule page. Verify the scheduled events for today
+
+preconditions:
+  - Browser must be on https://iheartyoga.org
+
+steps:
+  - Navigate to https://iheartyoga.org
+  - Verify the title contains "iHeartYoga"
+
+assertions:
+  - The title should contain "iHeartYoga"
+  - Document body should contain the text "Yoga for Everyone in Lantern Bay Park"

@@ -70,6 +70,16 @@ make lint               # Check style
 make clean              # Clear cache
 ```
 
+# Run the Agent Workflow
+```shell
+pdm run python main.py
+```
+
+# Run the tests directly
+```shell
+pdm run pytest
+```
+
 # 🛠️ Tools Used
 | Tool       | Purpose                |
 | ---------- | ---------------------- |
@@ -124,7 +134,7 @@ pdm list
 ```shell
 pdm info | grep venv
 ```
-Open PyCharm
+- Open PyCharm
 - Go to Preferences (⌘+, on Mac) → Project: YourProject → Python Interpreter
 - Click the ⚙️ (gear icon) → Add Interpreter
 - Choose "Add Local Interpreter" → "Existing Environment"
