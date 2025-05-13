@@ -25,6 +25,53 @@ This template integrates:
 
 Important: This project is set up for development with MacOS. You will need pip 25.0+ installed locally!
 
+# 🧠 Using a Local LLM Over the Network (Ollama)
+This project supports using a local LLM hosted on another machine via Ollama. This allows you to run the heavy model (like Mistral or CodeLlama) on a more powerful laptop or desktop and access it over your network.
+
+## 🔌 1. On the Host Machine (LLM Server)
+Make sure Ollama is installed:
+```shell
+brew install ollama
+ollama run mistral         # For planner agent
+ollama run codellama:7b    # For generator agent
+```
+Then make Ollama listen on your network:
+```shell
+export OLLAMA_HOST=0.0.0.0
+ollama serve
+```
+This exposes Ollama on port 11434.
+## 🌐 2. On the Client Machine (Your Project)
+Update the agent code to point to the host machine’s IP:
+```python
+OLLAMA_URL = "http://192.168.68.51:11434/api/generate"
+```
+Replace 192.168.68.51 with the actual IP address of the host machine.
+You can also set this in a .env file:
+```env
+OLLAMA_URL=http://192.168.68.51:11434/api/generate
+```
+## 🧪 3. Test the Connection
+From the client machine:
+```shell
+curl http://192.168.68.51:11434
+```
+Or test with Python:
+```python
+import requests
+r = requests.post("http://192.168.68.51:11434/api/generate", json={
+    "model": "mistral",
+    "prompt": "Say hello",
+    "stream": False
+})
+print(r.json()["response"])
+```
+
+## Notes
+- Ensure both machines are on the same Wi-Fi or LAN
+- Temporarily disable firewall on the host (or open port 11434)
+- For consistency, assign a static IP or use .local hostname resolution
+
 ## 🖥️ Getting Started (macOS)
 Here's how to get started with the codebase if you're on a mac:
 ## 1. Clone the Repository
