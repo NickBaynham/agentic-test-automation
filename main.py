@@ -1,7 +1,5 @@
 from scenario_loader import load_scenarios
 from agents.test_planner_agent import plan_test
-from agents.test_generator_agent import generate_test_code, save_test_file
-from agents.test_executor_agent import run_playwright_tests
 
 
 def run_agentic_test(scenario):

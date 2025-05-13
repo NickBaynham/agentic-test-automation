@@ -28,7 +28,7 @@ install_browsers:
 
 # Step 3: Run linter
 lint:
-	pdm run ruff check .
+	pdm run ruff check . --fix
 
 # Step 4: Run agents (Planner → Generator → Executor → Validator)
 run_agents:
