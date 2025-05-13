@@ -1,5 +1,57 @@
 import uuid
 import re
+import requests
+import json
+
+OLLAMA_URL = "http://192.168.68.51:11434/api/generate"
+MODEL = "mistral"
+prompt = """
+You are a JSON API. Extract structured test step info from the following instruction:
+
+"{step_text}"
+
+Respond only with a valid JSON object in this format:
+
+{
+  "action": "click",
+  "target": "Submit",
+  "data": null
+}
+
+Do not include any extra explanation or text.
+"""
+
+
+def ai_parse_step(step_text):
+    response = requests.post(
+        OLLAMA_URL,
+        json={
+            "model": MODEL,
+            "prompt": prompt,
+            "stream": False
+        }
+    )
+
+    # Parse JSON safely
+    try:
+        result = response.json()["response"]
+        print("🔁 Raw model response:\n", result)
+
+        # Strip whitespace or unexpected formatting, if needed
+        import json
+        parsed = json.loads(result.strip())
+        print("\n✅ Parsed JSON object:\n", parsed)
+
+    except Exception as e:
+        print(f"❌ Error parsing model response: {e}")
+
+    return {
+        "id": str(uuid.uuid4()),
+        "raw": step_text,
+        "action": parsed.get("action", "unknown"),
+        "target": parsed.get("target", "unknown"),
+        "data": parsed.get("data", None)
+    }
 
 
 def parse_step_simple(step_text):
