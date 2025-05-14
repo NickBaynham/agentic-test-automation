@@ -1,12 +1,52 @@
 import os
+import requests
+import json
 
+OLLAMA_URL = "http://192.168.68.51:11434/api/generate"  # Update IP for your network setup
+MODEL = "codellama:7b"
 OUTPUT_DIR = "playwright_tests"
 
 
+def ai_generate_test_code(scenario_name: str, structured_steps: list) -> str:
+    """
+    Uses an LLM (like CodeLlama) via Ollama to generate Playwright test code
+    based on structured steps.
+    """
+    print("AI Test Code Generation in Progress")
+    slug = scenario_name.replace(" ", "_").lower()
+
+    prompt = f"""
+You are a Python test automation assistant.
+Generate a Playwright test function in Python using pytest.
+Scenario: {scenario_name}
+Steps (structured):
+{json.dumps(structured_steps, indent=2)}
+Requirements:
+- Use Playwright's sync API
+- Add required imports
+- The function must be named test_{slug}
+- Use only valid Python syntax
+- Output only the full code, nothing else
+"""
+
+    try:
+        response = requests.post(OLLAMA_URL, json={
+            "model": MODEL,
+            "prompt": prompt,
+            "stream": False
+        })
+
+        result = response.json()["response"]
+        print(f"🧠 LLM generated code for: {scenario_name}\n")
+        return result.strip()
+
+    except Exception as e:
+        print(f"❌ Code generation failed: {e}")
+        return f"# Code generation failed for scenario: {scenario_name}\ndef test_{slug}(page: Page):\n    pass\n"
+
+
 def generate_test_code(scenario_name: str, structured_steps: list) -> str:
-    lines = []
-    lines.append("from playwright.sync_api import Page, expect")
-    lines.append("")
+    lines = ["from playwright.sync_api import Page, expect", ""]
     func_name = f"test_{scenario_name.replace(' ', '_').lower()}"
     lines.append(f"def {func_name}(page: Page):")
 

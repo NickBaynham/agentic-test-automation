@@ -23,7 +23,7 @@ This template integrates:
 - **OpenAI GPT-4**: As the language model for generating test scripts.  
 - **LangGraph**: For orchestrating agent workflows.
 
-Important: This project is set up for development with MacOS. You will need pip 25.0+ installed locally!
+Important: This project is set up for development with macOS. You will need pip 25.0+ installed locally!
 
 # 🧠 Using a Local LLM Over the Network (Ollama)
 This project supports using a local LLM hosted on another machine via Ollama. This allows you to run the heavy model (like Mistral or CodeLlama) on a more powerful laptop or desktop and access it over your network.
@@ -73,7 +73,7 @@ print(r.json()["response"])
 - For consistency, assign a static IP or use .local hostname resolution
 
 ## 🖥️ Getting Started (macOS)
-Here's how to get started with the codebase if you're on a mac:
+Here's how to get started with the codebase if you're on a Mac:
 ## 1. Clone the Repository
 Get started on your local machine by cloning the repository:
 ```shell
@@ -99,7 +99,7 @@ Create a user story like:
 As a user, I want to log in with a valid password and see the dashboard.
 ```
 
-### Run the agents to automatically:
+### Run the agents automatically:
 
 - Break down test steps
 - Generate Playwright test code
@@ -129,7 +129,7 @@ pdm run pytest
 
 # 🛠️ Tools Used
 | Tool       | Purpose                |
-| ---------- | ---------------------- |
+|------------|------------------------|
 | PDM        | Python package manager |
 | Playwright | E2E browser automation |
 | LangChain  | LLM agent framework    |

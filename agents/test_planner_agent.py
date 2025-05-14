@@ -1,7 +1,6 @@
 import uuid
 import re
 import requests
-import json
 
 OLLAMA_URL = "http://192.168.68.51:11434/api/generate"
 MODEL = "mistral"
